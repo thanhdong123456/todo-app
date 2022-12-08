@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Todo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class TodosController extends Controller
 {
@@ -15,7 +15,7 @@ class TodosController extends Controller
      */
     public function index()
     {
-        $todos = Todo::all();
+        $todos = Todo::where('user_id', Auth::id())->get();
         return view('todos.index')->with('todos', $todos);
     }
 
@@ -44,6 +44,7 @@ class TodosController extends Controller
         $data = $request->all();
 
         $todo = new Todo();
+        $todo->user_id = Auth::id();
         $todo->name = $data['name'];
         $todo->description = $data['description'];
         $todo->completed = false;
@@ -90,7 +91,7 @@ class TodosController extends Controller
             'description' => 'required'
         ]);
         $data = $request->all();
-
+        
         $todo->name = $data['name'];
         $todo->description = $data['description'];
         $todo->completed = false;
