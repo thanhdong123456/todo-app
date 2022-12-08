@@ -50,9 +50,8 @@ class TodosController extends Controller
         $todo->completed = false;
     
         $todo->save();
-        session()->flash('success', 'Todo created successfully.');
     
-        return redirect('/todos');
+        return redirect('/todos')->with('success', 'Todo created successfully.');
     }
 
     /**
@@ -62,8 +61,12 @@ class TodosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Todo $todo)
-    {
-        return view('todos.show')->with('todo', $todo);
+    {   
+        if($todo->user_id == Auth::id()) {
+            return view('todos.show')->with('todo', $todo);
+        } else {
+            return redirect('/todos')->with('error', 'không hợp lệ');
+        }
     }
 
     /**
@@ -74,7 +77,11 @@ class TodosController extends Controller
      */
     public function edit(Todo $todo)
     {
-        return view('todos.edit')->with('todo', $todo);
+        if($todo->user_id == Auth::id()) {
+            return view('todos.edit')->with('todo', $todo);
+        } else {
+            return redirect('/todos')->with('error', 'không hợp lệ');
+        }
     }
 
     /**
@@ -91,15 +98,14 @@ class TodosController extends Controller
             'description' => 'required'
         ]);
         $data = $request->all();
-        
+
         $todo->name = $data['name'];
         $todo->description = $data['description'];
         $todo->completed = false;
     
         $todo->save();
-        session()->flash('success', 'Todo updated successfully.');
     
-        return redirect('/todos');
+        return redirect('/todos')->with('success', 'Todo updated successfully.');
     }
 
     /**
@@ -110,9 +116,8 @@ class TodosController extends Controller
      */
     public function destroy(Todo $todo)
     {   
-        $todo->delete();
-        session()->flash('success', 'Todo deleted successfully.');
-        return redirect('/todos');
+        $todo->delete();;
+        return redirect('/todos')->with('success', 'Todo deleted successfully.');
     }
 
     public function complete(Todo $todo)
@@ -120,8 +125,6 @@ class TodosController extends Controller
         $todo->completed = true;
         $todo->save();
 
-        session()->flash('success', 'Todo completed successfully.');
-
-        return redirect('/todos');
+        return redirect('/todos')->with('success', 'Todo completed successfully.');
     }
 }

@@ -27,11 +27,7 @@
             @endif
                 
             <!-- Page Content -->
-            @if(session()->has('success'))
-                <div class="alert alert-success">
-                {{ session()->get('success') }}
-                </div>
-            @endif
+            @include('message')
             <main>
                 {{ $slot }}
             </main>
