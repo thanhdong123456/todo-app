@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -25,8 +25,13 @@
                     </div>
                 </header>
             @endif
-
+                
             <!-- Page Content -->
+            @if(session()->has('success'))
+                <div class="alert alert-success">
+                {{ session()->get('success') }}
+                </div>
+            @endif
             <main>
                 {{ $slot }}
             </main>

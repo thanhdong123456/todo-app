@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\todosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,17 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/todos', [todosController::class, 'index'])->name('todos.index');
+    Route::get('/todos/{todo}', [todosController::class, 'show'])->name('todos.show');
+    Route::get('/new-todos', [todosController::class, 'create'])->name('todos.create');
+    Route::post('/store-todos', [todosController::class, 'store'])->name('todos.store');
+    Route::get('/todos/{todo}/edit', [todosController::class, 'edit'])->name('todos.edit');
+    Route::post('/todos/{todo}/update-todos', [todosController::class, 'update'])->name('todos.update');
+    Route::get('/todos/{todo}/delete', [todosController::class, 'destroy'])->name('todos.destroy');
+    Route::get('/todos/{todo}/complete', [todosController::class, 'complete'])->name('todos.complete');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
