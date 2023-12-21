@@ -83,6 +83,12 @@
                                 <h2>Brands</h2>
                                 <div class="brands-name">
                                     <ul class="nav nav-pills nav-stacked" style="flex-direction: column">
+										<li>
+											<a class="{{ request()->query('brand_id') == null ? 'active' : '' }}"
+												href="{{ route('dashboard', ['category_id' => request()->query('category_id'), 'brand_id' => null, 'range_id' => request()->query('range_id')]) }}">
+												ALL
+											</a>
+										</li>
                                         @foreach ($brands as $brand)
                                             <li>
                                                 <a class="{{ $brand->id == request()->query('brand_id') ? 'active' : '' }}"
@@ -99,6 +105,12 @@
                                 <h2>Price Range</h2>
                                 <div class="brands-name">
                                     <ul class="nav nav-pills nav-stacked" style="flex-direction: column">
+										<li>
+                                            <a class="{{ request()->query('range_id') == null ? 'active' : '' }}"
+                                                href="{{ route('dashboard', ['category_id' => request()->query('category_id'), 'brand_id' => request()->query('brand_id'), 'range_id' => null]) }}">
+                                                ALL
+                                            </a>
+                                        </li>
                                         <li>
                                             <a class="{{ request()->query('range_id') == 1 ? 'active' : '' }}"
                                                 href="{{ route('dashboard', ['category_id' => request()->query('category_id'), 'brand_id' => request()->query('brand_id'), 'range_id' => 1]) }}">
