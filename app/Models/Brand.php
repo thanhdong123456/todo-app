@@ -17,7 +17,7 @@ class Brand extends Model
         'brand_name',
     ];
 
-        /**
+    /**
      * @return BelongsTo
      */
     public function products(): BelongsTo

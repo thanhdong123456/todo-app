@@ -25,7 +25,7 @@ class Product extends Model
         'status',
     ];
 
-        /**
+    /**
      * @return HasOne
      */
     public function categories(): HasOne
@@ -37,7 +37,7 @@ class Product extends Model
         );
     }
 
-        /**
+    /**
      * @return HasOne
      */
     public function brands(): HasOne

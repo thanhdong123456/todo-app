@@ -25,7 +25,7 @@
             </div>
         </div>
     </div><!--/header_top-->
-    
+
     <div class="header-middle"><!--header-middle-->
         <div class="container">
             <div class="row">
@@ -42,7 +42,8 @@
                             <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             <li><a href="/profile"><i class="fa fa-user"></i> {{ Auth::user()->name }}</a></li>
                             <li>
-                                <div style="background: #FFFFFF;
+                                <div
+                                    style="background: #FFFFFF;
                                 color: #696763;
                                 font-family: 'Roboto', sans-serif;
                                 font-size: 14px;
@@ -52,9 +53,9 @@
                                 margin-top: 10px;">
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                    
+
                                         <x-responsive-nav-link :href="route('logout')"
-                                                onclick="event.preventDefault();
+                                            onclick="event.preventDefault();
                                                             this.closest('form').submit();">
                                             <i class="fa fa-lock"></i> Logout
                                         </x-responsive-nav-link>

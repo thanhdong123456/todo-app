@@ -62,6 +62,10 @@ a#scrollUp i{
   font-size: 30px;
 }
 
+a.active {
+  color: #FE980F !important;
+}
+
 
 /*************************
 *******Header CSS******
