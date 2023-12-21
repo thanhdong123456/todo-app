@@ -1,10 +1,16 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('content')
+<div>
     <h1 class="text-center my-5">Create Todos</h1>
 
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">Create new todo</div>
+                <div class="card-header" style="display: flex; justify-content: space-between">
+                    Create new todo
+                    <a href="/todos" class="btn btn-success btn-sm float-right">Back</a>
+                </div>
                 <div class="card-body">
                     @if($errors->any())
                         <div class="alert alert-danger">
@@ -33,4 +39,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</div>
+@endsection

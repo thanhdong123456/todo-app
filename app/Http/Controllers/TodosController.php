@@ -127,4 +127,13 @@ class TodosController extends Controller
 
         return redirect('/todos')->with('success', 'Todo completed successfully.');
     }
+
+
+    public function again(Todo $todo)
+    {
+        $todo->completed = false;
+        $todo->save();
+
+        return redirect('/todos')->with('success', 'Todo start again successfully.');
+    }
 }

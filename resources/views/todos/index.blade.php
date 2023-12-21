@@ -1,4 +1,7 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('content')
+<div>
 <html>
 <head>
     <title>Todos</title>
@@ -11,8 +14,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-default">
-                    <div class="card-header">
+                    <div class="card-header" style="display: flex; justify-content: space-between">
                         Todos
+                        <a href="/new-todos" class="btn btn-success btn-sm float-right">ADD</a>
                     </div>
 
                     <div class="card-body">
@@ -24,7 +28,8 @@
                                         <a href="/todos/{{ $todo->id }}/complete" style="color: white;" class="btn btn-warning btn-sm float-right">Complete</a>
                                     @endif
                                     @if($todo->completed)
-                                        <a href="/todos/{{ $todo->id }}/complete" style="color: white;" class="btn btn-success btn-sm float-right">Completed</a>
+                                        <a href="" style="color: white;" class="btn btn-success btn-sm float-right">Completed</a>
+                                        <a href="/todos/{{ $todo->id }}/again" style="color: white;" class="btn btn-info btn-sm float-right">Start again</a>
                                     @endif
                                     <a href="/todos/{{ $todo->id }}" class="btn btn-primary btn-sm float-right mr-2">Details</a>
                                 </li>
@@ -37,4 +42,5 @@
     </div>
 </body>
 </html>
-</x-app-layout>
+</div>
+@endsection

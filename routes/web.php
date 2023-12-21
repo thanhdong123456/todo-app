@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\todosController;
 use Illuminate\Support\Facades\Route;
@@ -15,13 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/todos', [todosController::class, 'index'])->name('todos.index');
@@ -32,12 +28,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/todos/{todo}/update-todos', [todosController::class, 'update'])->name('todos.update');
     Route::get('/todos/{todo}/delete', [todosController::class, 'destroy'])->name('todos.destroy');
     Route::get('/todos/{todo}/complete', [todosController::class, 'complete'])->name('todos.complete');
+    Route::get('/todos/{todo}/again', [todosController::class, 'again'])->name('todos.again');
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile/delete/{id}', [ProfileController::class, 'destroy']);
 });
 
 require __DIR__.'/auth.php';

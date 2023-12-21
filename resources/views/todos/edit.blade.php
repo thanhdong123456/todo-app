@@ -1,4 +1,7 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('content')
+<div>
     <h1 class="text-center my-5">Edit Todos</h1>
 
     <div class="row justify-content-center">
@@ -33,4 +36,5 @@
             </div>
         </div>
     </div>
-    </x-app-layout>
+    </div>
+    @endsection

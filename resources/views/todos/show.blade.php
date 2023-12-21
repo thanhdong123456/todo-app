@@ -1,8 +1,10 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('content')
+<div>
 <html>
 <head>
     <title>Todos</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
@@ -23,4 +25,5 @@
     </div>
 </body>
 </html>
-</x-app-layout>
+</div>
+@endsection
